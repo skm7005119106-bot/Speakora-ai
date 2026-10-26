@@ -1,0 +1,235 @@
+{
+  "app": "Speakora AI",
+  "version": "1.0",
+  "languages": [
+    "English",
+    "Hindi",
+    "Bengali"
+  ],
+  "framework": "CEFR-inspired Pre-A1, A1, A2, B1, B2 pathways. Practice levels are estimates, not official certifications.",
+  "daily_plans_minutes": [
+    5,
+    15,
+    25
+  ],
+  "learning_loop": [
+    "Recall previous learning",
+    "Short explanation",
+    "Examples in context",
+    "Guided practice",
+    "Learner creates own sentence",
+    "Gentle correction",
+    "Quick quiz",
+    "Schedule review",
+    "Update progress"
+  ],
+  "mastery_algorithm": {
+    "score": {
+      "correct_without_hint": 1,
+      "correct_with_hint": 0.6,
+      "incorrect": 0
+    },
+    "threshold": 0.8,
+    "promotion": "Advance after at least 80% on two separate attempts plus a short real-life response; otherwise simplify and retry.",
+    "review_days": [
+      1,
+      3,
+      7,
+      14,
+      30
+    ],
+    "personalize_by": [
+      "goal",
+      "estimated level",
+      "recent mistakes",
+      "review queue",
+      "preferred explanation language"
+    ]
+  },
+  "levels": [
+    {
+      "id": "pre_a1",
+      "name": "Starter",
+      "goal": "Use familiar words and short phrases",
+      "modules": [
+        "Greetings and introductions",
+        "Alphabet, numbers and spelling",
+        "People and family",
+        "Everyday objects and colours",
+        "Simple needs and polite requests"
+      ]
+    },
+    {
+      "id": "a1",
+      "name": "Beginner",
+      "goal": "Handle simple everyday exchanges",
+      "modules": [
+        "Daily routine and present simple",
+        "Food and ordering",
+        "Shopping and money",
+        "Places and directions",
+        "Past simple basics",
+        "Plans and invitations",
+        "Health and asking for help",
+        "Mixed conversation challenge"
+      ]
+    },
+    {
+      "id": "a2",
+      "name": "Elementary Plus",
+      "goal": "Describe experiences and manage routine tasks",
+      "modules": [
+        "Tell a short story",
+        "Work and school",
+        "Travel and transport",
+        "Making plans",
+        "Opinions and preferences",
+        "Describing people and places",
+        "Emails and messages",
+        "Problem-solving role-play"
+      ]
+    },
+    {
+      "id": "b1",
+      "name": "Intermediate",
+      "goal": "Explain opinions and connect ideas",
+      "modules": [
+        "Fluent everyday conversation",
+        "Experiences and achievements",
+        "Workplace communication",
+        "Interview practice",
+        "Problems and solutions",
+        "News and everyday topics",
+        "Clear paragraphs",
+        "Longer role-play"
+      ]
+    },
+    {
+      "id": "b2",
+      "name": "Upper Intermediate",
+      "goal": "Communicate fluently with detail",
+      "modules": [
+        "Nuanced opinions and debate",
+        "Professional presentations",
+        "Advanced interview answers",
+        "Natural expressions and collocations",
+        "Listening for detail and inference",
+        "Formal and informal writing",
+        "Negotiation and persuasion",
+        "Integrated final challenge"
+      ]
+    }
+  ],
+  "practice_modes": {
+    "ai_chat": "One question at a time; natural conversation; correct one or two high-value errors.",
+    "roleplay": [
+      "Shopping",
+      "Restaurant",
+      "Travel desk",
+      "Job interview",
+      "School meeting",
+      "Phone call",
+      "Asking directions",
+      "Customer service",
+      "Work meeting"
+    ],
+    "grammar": "Quick diagnostic → simple explanation → examples → practice → check.",
+    "vocabulary": "Meaning → example → common word partner → learner-created sentence → spaced recall.",
+    "listening": "When audio is available: listen for main idea, answer detail questions, then review transcript.",
+    "pronunciation": "Only score speech if microphone/audio processing is integrated; never pretend text chat can assess pronunciation.",
+    "writing": "Show corrected version, explain key changes, then invite a second attempt."
+  },
+  "correction_format": [
+    "Your sentence",
+    "Natural corrected version",
+    "One simple explanation",
+    "One example",
+    "Try again"
+  ],
+  "sample_lesson": {
+    "id": "a1_introductions",
+    "title": "Introduce yourself confidently",
+    "objective": "Say your name and where you are from, and ask another person's name.",
+    "phrases": [
+      {
+        "en": "Hi, my name is Riya.",
+        "hi": "नमस्ते, मेरा नाम रिया है।",
+        "bn": "হাই, আমার নাম রিয়া।"
+      },
+      {
+        "en": "I am from Manipur.",
+        "hi": "मैं मणिपुर से हूँ।",
+        "bn": "আমি মণিপুর থেকে এসেছি।"
+      },
+      {
+        "en": "What is your name?",
+        "hi": "आपका नाम क्या है?",
+        "bn": "আপনার নাম কী?"
+      },
+      {
+        "en": "Nice to meet you.",
+        "hi": "आपसे मिलकर अच्छा लगा।",
+        "bn": "আপনার সঙ্গে পরিচিত হয়ে ভালো লাগল।"
+      }
+    ],
+    "common_mistakes": [
+      {
+        "wrong": "Myself Riya.",
+        "better": "My name is Riya. / I'm Riya.",
+        "why": "Use 'My name is...' or 'I'm...' for a normal introduction."
+      },
+      {
+        "wrong": "I from Manipur.",
+        "better": "I am from Manipur.",
+        "why": "Use 'am' with 'I' here."
+      }
+    ],
+    "quiz": [
+      {
+        "type": "fill_blank",
+        "q": "I ___ from Manipur.",
+        "answer": "am"
+      },
+      {
+        "type": "reorder",
+        "q": "name / your / is / What?",
+        "answer": "What is your name?"
+      },
+      {
+        "type": "personal_response",
+        "q": "Introduce yourself in two short English sentences."
+      }
+    ]
+  },
+  "daily_tips": [
+    "Practise a little every day instead of waiting to feel perfect.",
+    "Learn phrases in context, not only isolated translations.",
+    "Try to recall an answer before revealing hints.",
+    "Review difficult words across multiple days rather than cramming.",
+    "When audio is available, listen, pause, repeat, and compare.",
+    "Aim to be understood first; improve accuracy gradually.",
+    "Track recurring mistakes and revisit them.",
+    "Practise real goals: introductions, work, school, shopping, travel and interviews."
+  ],
+  "ai_tutor_system_prompt": "You are Speakora AI, a patient practical English coach for learners who may prefer Hindi or Bengali explanations. Use clear natural English suited to the learner's estimated level. Ask one question at a time and encourage the learner to create their own sentences. When correcting, show their sentence, a natural correction, one simple explanation in their selected support language, and one new example. Correct only one or two important errors per turn unless detailed correction is requested. During role-play, stay in character and summarize corrections after the scene. Never claim to hear or score pronunciation unless audio input is actually available. Never claim an official CEFR level or certificate. Be supportive and never mock accents.",
+  "research": [
+    {
+      "finding": "Organize courses around practical can-do outcomes and multiple language skills.",
+      "source": "Council of Europe CEFR Companion Volume",
+      "url": "https://www.coe.int/en/web/education/-/common-european-framework-of-reference-for-languages-learning-teaching-assessment-14"
+    },
+    {
+      "finding": "Use level-organized short grammar lessons with practice and checking; little-and-often practice is encouraged.",
+      "source": "British Council LearnEnglish Grammar",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar"
+    },
+    {
+      "finding": "Spaced practice supports second-language learning; vocabulary benefits when review is paired with retrieval and meaningful use.",
+      "source": "2022 meta-analysis and 2020 vocabulary-training review",
+      "urls": [
+        "https://onlinelibrary.wiley.com/doi/10.1111/lang.12479",
+        "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/abs/review-of-laboratory-studies-of-adult-second-language-vocabulary-training/18F0A5D1FFC829CE05931B2EEE83124A"
+      ]
+    }
+  ]
+}
