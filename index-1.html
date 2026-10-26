@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08132d">
+<title>Speakora AI — Speak English with Confidence</title>
+<style>
+:root{--bg:#071127;--panel:rgba(19,34,68,.78);--panel2:rgba(29,48,88,.72);--line:rgba(164,190,255,.16);--text:#f5f7ff;--muted:#aab7d8;--blue:#79a7ff;--cyan:#66e4ff;--purple:#b39aff;--gold:#ffd88a;--good:#7de8bd;--shadow:0 18px 45px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#1a2b5b 0,transparent 38%),radial-gradient(ellipse at 100% 40%,#192b54 0,transparent 33%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{max-width:520px;min-height:100vh;margin:auto;padding:18px 16px 100px;position:relative;overflow:hidden}
+.glow{position:fixed;width:180px;height:180px;border-radius:50%;filter:blur(70px);opacity:.16;pointer-events:none;z-index:-1;background:#4b79ff;top:32%;left:-70px}
+header{display:flex;align-items:center;justify-content:space-between;margin:3px 0 22px}.brand{display:flex;align-items:center;gap:10px}.logo{width:43px;height:43px;border-radius:15px;background:linear-gradient(135deg,#77dfff,#8a83ff 55%,#df9cff);display:grid;place-items:center;color:#071127;font-weight:900;font-size:21px;box-shadow:0 8px 25px #5b8dff35}.brand h1{font-size:18px;letter-spacing:.2px;margin:0}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.header-actions{display:flex;gap:9px}.iconbtn{border:1px solid var(--line);background:#ffffff08;width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:17px}
+.screen{display:none;animation:rise .25s ease}.screen.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase}.hero h2{font-size:29px;line-height:1.13;letter-spacing:-.8px;margin:9px 0}.gradient-text{background:linear-gradient(90deg,#fff,#8eeaff 55%,#c3a8ff);-webkit-background-clip:text;background-clip:text;color:transparent}.sub{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+.hero-card{margin-top:20px;padding:20px;border:1px solid #9bbcff26;border-radius:25px;background:linear-gradient(135deg,rgba(36,65,120,.78),rgba(25,31,72,.8));box-shadow:var(--shadow);position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;width:190px;height:190px;right:-90px;top:-80px;border-radius:50%;background:#80b8ff18;filter:blur(2px)}.hero-row{display:flex;gap:13px;align-items:center;position:relative;z-index:1}.tutor-avatar{width:82px;height:96px;flex-shrink:0;border-radius:23px;background:linear-gradient(155deg,#a8e9ff,#8c92ff 55%,#e4b4ff);display:grid;place-items:center;font-size:48px;box-shadow:inset 0 0 0 1px #ffffff80}.hero-card h3{font-size:17px;margin:0 0 6px}.hero-card p{font-size:12px;color:#d1dcf8;line-height:1.5;margin:0 0 12px}.pill{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid #8cebdc3b;border-radius:99px;background:#66e4ff12;font-size:10px;color:#a7fff0}
+.btn{border:0;border-radius:14px;padding:13px 16px;background:linear-gradient(110deg,#74e2ff,#a9a1ff);color:#08142d;font-weight:800;font-size:13px;box-shadow:0 7px 22px #6b9cff25}.btn.secondary{background:#ffffff0b;border:1px solid var(--line);color:var(--text);box-shadow:none}.btn.full{width:100%;margin-top:14px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:25px 1px 12px}.section-head h3{font-size:16px;margin:0}.textbtn{background:none;border:0;color:var(--cyan);font-size:12px;font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}.stat{padding:13px 11px;border-radius:17px;background:#ffffff07;border:1px solid var(--line)}.stat strong{display:block;font-size:20px}.stat span{font-size:10px;color:var(--muted);display:block;margin-top:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feature{padding:15px;border-radius:19px;border:1px solid var(--line);background:linear-gradient(145deg,#ffffff0b,#ffffff04);min-height:116px;text-align:left}.feature .emoji{font-size:24px;display:block;margin-bottom:11px}.feature strong{display:block;font-size:13px;margin-bottom:5px}.feature small{color:var(--muted);font-size:11px;line-height:1.4;display:block}
+.progress-line{height:7px;border-radius:20px;background:#ffffff12;overflow:hidden;margin:10px 0}.progress-line span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:20px;transition:width .4s}
+.lesson-list{display:grid;gap:10px}.lesson{padding:15px;border:1px solid var(--line);border-radius:17px;background:#ffffff07;display:flex;align-items:center;gap:12px}.lesson-icon{width:42px;height:42px;border-radius:14px;background:#81aaff18;display:grid;place-items:center;font-size:20px;flex-shrink:0}.lesson-info{flex:1;min-width:0}.lesson-info strong{font-size:13px;display:block}.lesson-info small{font-size:11px;color:var(--muted);display:block;margin-top:5px}.arrow{color:var(--muted);font-size:20px}
+.level-pills{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px}.level-pill{white-space:nowrap;border:1px solid var(--line);background:#ffffff08;border-radius:99px;padding:8px 12px;font-size:11px;color:var(--muted)}.level-pill.active{background:#80aaff22;color:#d9e6ff;border-color:#83b4ff75}
+.chat-wrap{height:min(60vh,540px);display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;background:#ffffff06;overflow:hidden}.chat-top{padding:14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}.mini-avatar{width:38px;height:38px;border-radius:13px;background:linear-gradient(140deg,#8deaff,#b29aff);display:grid;place-items:center;font-size:23px}.chat-top strong{font-size:13px}.chat-top small{display:block;color:var(--good);font-size:10px;margin-top:3px}.messages{padding:14px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;flex:1}.msg{max-width:88%;padding:11px 13px;border-radius:16px;font-size:13px;line-height:1.5;white-space:pre-wrap}.msg.ai{align-self:flex-start;background:#ffffff0c;border:1px solid var(--line);border-bottom-left-radius:5px}.msg.user{align-self:flex-end;background:linear-gradient(120deg,#4d83d7,#8478dc);border-bottom-right-radius:5px}.chat-compose{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line)}.chat-compose input{min-width:0;flex:1;background:#ffffff0a;border:1px solid var(--line);border-radius:13px;padding:12px;color:var(--text);outline:none;font-size:13px}.send{width:45px;border:0;border-radius:13px;background:linear-gradient(120deg,#73e5ff,#a7a1ff);color:#09142d;font-weight:900}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:10px 2px}
+.big-score{display:flex;align-items:center;gap:18px;padding:20px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(145deg,#243d70a8,#171d42a8)}.score-ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--cyan) 0deg,#8c83ff 100deg,#ffffff12 100deg);position:relative;flex-shrink:0}.score-ring:before{content:"";position:absolute;inset:7px;background:#152448;border-radius:50%}.score-ring strong{position:relative;font-size:21px}.big-score h3{margin:0 0 6px;font-size:16px}.big-score p{font-size:11px;color:var(--muted);margin:0;line-height:1.5}
+.profile-card{padding:20px;border-radius:22px;border:1px solid var(--line);background:#ffffff08;text-align:center}.profile-avatar{width:72px;height:72px;border-radius:24px;background:linear-gradient(135deg,#8deaff,#a89aff);display:grid;place-items:center;font-size:36px;margin:0 auto 12px}.profile-card h2{margin:0 0 5px;font-size:20px}.profile-card p{color:var(--muted);font-size:12px;margin:0}.field{margin:13px 0}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:7px}.field input,.field select{width:100%;padding:12px 13px;border-radius:13px;border:1px solid var(--line);background:#0c1936;color:var(--text);outline:none}.field option{background:#0c1936}
+.bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:rgba(7,15,35,.92);backdrop-filter:blur(22px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:3px}.nav-item{border:0;background:none;color:#8190b4;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;padding:5px 0}.nav-item .nav-ico{font-size:20px;line-height:1.1}.nav-item.active{color:#9feaff}.nav-item.active .nav-ico{filter:drop-shadow(0 0 8px #67dfff8a)}.nav-item.center .nav-ico{width:42px;height:42px;display:grid;place-items:center;margin-top:-18px;border-radius:16px;background:linear-gradient(135deg,#75e4ff,#a89aff);color:#07142b;font-size:22px;box-shadow:0 7px 24px #73baff45}
+.toast{position:fixed;z-index:40;bottom:95px;left:50%;transform:translateX(-50%);background:#e7f7ff;color:#071127;border-radius:12px;padding:11px 15px;font-size:12px;font-weight:700;box-shadow:var(--shadow);display:none;max-width:90%;text-align:center}
+.onboarding{position:fixed;inset:0;z-index:50;background:radial-gradient(ellipse at 50% 0%,#263b78,transparent 50%),#071127;display:none;align-items:center;justify-content:center;padding:24px}.onboarding.show{display:flex}.onboard-card{width:min(430px,100%);padding:25px;border-radius:27px;background:#101f40;border:1px solid #a4c5ff30;box-shadow:var(--shadow)}.onboard-logo{font-size:42px;text-align:center;margin:3px 0 12px}.onboard-card h2{text-align:center;font-size:25px;margin:0 0 8px}.onboard-card>p{text-align:center;font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 18px}
+footer{font-size:10px;color:#7d8aab;text-align:center;margin:27px 0 0;line-height:1.5}
+@media(min-width:520px){body{padding:12px 0}.app{border:1px solid #ffffff0a;border-radius:28px;min-height:calc(100vh - 24px)}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">S</div><div><h1>Speakora <span class="gradient-text">AI</span></h1><small>Speak English with confidence</small></div></div>
+ <div class="header-actions"><button class="iconbtn" id="langBtn" aria-label="Change language">हि</button><button class="iconbtn" id="settingsBtn" aria-label="Settings">⚙</button></div>
+</header>
+
+<section id="home" class="screen active">
+ <div class="hero"><div class="eyebrow">YOUR DAILY ENGLISH COACH</div><h2 id="greeting">Small steps.<br><span class="gradient-text">Confident English.</span></h2><p class="sub">Practice real conversations, learn useful phrases, and improve one day at a time.</p></div>
+ <div class="hero-card"><div class="hero-row"><div class="tutor-avatar" aria-label="AI tutor avatar">👩🏻‍🏫</div><div><h3>Meet your AI Tutor</h3><p>Friendly practice for everyday English, work, travel and interviews.</p><span class="pill">✦ Ready to practise</span></div></div><button class="btn full" onclick="go('tutor')">Start speaking practice&nbsp; →</button></div>
+ <div class="stats"><div class="stat"><strong id="streakStat">0 🔥</strong><span>Day streak</span></div><div class="stat"><strong id="lessonStat">0</strong><span>Lessons done</span></div><div class="stat"><strong id="wordStat">0</strong><span>Words learned</span></div></div>
+ <div class="section-head"><h3>Continue learning</h3><button class="textbtn" onclick="go('learn')">View all →</button></div>
+ <div class="lesson-list" id="continueList"></div>
+ <div class="section-head"><h3>Quick practice</h3></div>
+ <div class="grid2">
+  <button class="feature" onclick="quickPrompt('Let us practise useful everyday English phrases for a beginner.')"><span class="emoji">💬</span><strong>Everyday English</strong><small>Useful phrases for daily life</small></button>
+  <button class="feature" onclick="quickPrompt('Help me practise a job interview in English. Ask one question at a time.')"><span class="emoji">🎯</span><strong>Interview practice</strong><small>Build confidence at work</small></button>
+  <button class="feature" onclick="quickPrompt('Teach me five useful English words. Explain meanings in my chosen language and quiz me.')"><span class="emoji">📚</span><strong>New vocabulary</strong><small>Learn words in context</small></button>
+  <button class="feature" onclick="quickPrompt('Start a simple restaurant role-play. You are the server and I am the customer.')"><span class="emoji">☕</span><strong>Role-play</strong><small>Practise real situations</small></button>
+ </div>
+ <footer>Practise a little every day. Progress comes from consistency.</footer>
+</section>
+
+<section id="learn" class="screen">
+ <div class="eyebrow">YOUR LEARNING PATH</div><h2 style="font-size:27px;margin:8px 0">Learn step by step</h2><p class="sub">Choose a level and practise practical English skills.</p>
+ <div class="section-head"><h3>Choose your level</h3></div><div class="level-pills" id="levelPills"></div>
+ <div class="big-score" style="margin:7px 0 20px"><div class="score-ring"><strong id="levelPercent">0%</strong></div><div><h3 id="levelTitle">Starter level</h3><p id="levelDesc">Build confidence with familiar words and short phrases.</p><div class="progress-line"><span id="levelBar"></span></div></div></div>
+ <div class="section-head"><h3 id="moduleHeading">Lessons</h3><span class="pill">Bite-sized</span></div><div class="lesson-list" id="lessonList"></div>
+ <p class="hint">Tip: complete a short lesson, then try using the new phrase in your own sentence.</p>
+</section>
+
+<section id="tutor" class="screen">
+ <div class="eyebrow">LIVE PRACTICE</div><h2 style="font-size:27px;margin:8px 0">AI Tutor <span class="gradient-text">Conversation</span></h2><p class="sub" style="margin-bottom:15px">Write your answer in English. Ask for a Hindi or Bengali explanation anytime.</p>
+ <div class="chat-wrap"><div class="chat-top"><div class="mini-avatar">👩🏻‍🏫</div><div><strong>Speakora Coach</strong><small>● Ready to help you learn</small></div><button class="textbtn" style="margin-left:auto" onclick="clearChat()">New chat</button></div><div class="messages" id="messages" aria-live="polite"><div class="msg ai">Hi! 👋 I'm your Speakora English coach. Let's practise together. What's your name, and what would you like to improve today?</div></div><form class="chat-compose" id="chatForm"><input id="chatInput" placeholder="Type your answer in English…" autocomplete="off" required><button class="send" type="submit" aria-label="Send">➤</button></form></div>
+ <p class="hint">The tutor connects to your backend at <strong>/api/chat</strong>. If the AI service is unavailable, the app will tell you rather than pretending a reply came from AI.</p>
+ <div class="section-head"><h3>Try a prompt</h3></div><div class="level-pills"><button class="level-pill" onclick="quickPrompt('I am a beginner. Help me introduce myself.')">Introduce myself</button><button class="level-pill" onclick="quickPrompt('Correct my English gently and explain in Hindi.')">Explain in Hindi</button><button class="level-pill" onclick="quickPrompt('Explain this in Bengali and help me practise in English.')">Explain in Bengali</button></div>
+</section>
+
+<section id="progress" class="screen">
+ <div class="eyebrow">YOUR PROGRESS</div><h2 style="font-size:27px;margin:8px 0">Every step counts ✨</h2><p class="sub">Your learning activity is saved on this device.</p>
+ <div class="big-score" style="margin-top:20px"><div class="score-ring"><strong id="overallPercent">0%</strong></div><div><h3>Your learning journey</h3><p id="progressMessage">Start your first lesson to build your progress.</p><div class="progress-line"><span id="overallBar"></span></div></div></div>
+ <div class="stats"><div class="stat"><strong id="progressLessons">0</strong><span>Lessons done</span></div><div class="stat"><strong id="progressWords">0</strong><span>Words learned</span></div><div class="stat"><strong id="progressStreak">0</strong><span>Day streak</span></div></div>
+ <div class="section-head"><h3>Skills to build</h3></div><div class="lesson-list">
+ <div class="lesson"><div class="lesson-icon">🗣️</div><div class="lesson-info"><strong>Speaking confidence</strong><small>Practise short answers and role-plays with the AI tutor.</small></div></div>
+ <div class="lesson"><div class="lesson-icon">✍️</div><div class="lesson-info"><strong>Grammar & sentence building</strong><small>Learn a rule, then use it in your own sentence.</small></div></div>
+ <div class="lesson"><div class="lesson-icon">🧠</div><div class="lesson-info"><strong>Vocabulary recall</strong><small>Review words across multiple days.</small></div></div></div>
+ <p class="hint">Progress scores are based on lessons completed in this prototype. Official language-level certification is not provided.</p>
+</section>
+
+<section id="profile" class="screen">
+ <div class="eyebrow">YOUR SPACE</div><h2 style="font-size:27px;margin:8px 0 17px">Profile & settings</h2>
+ <div class="profile-card"><div class="profile-avatar">🌟</div><h2 id="profileName">English Learner</h2><p id="profileLevel">Starter · Learning English</p></div>
+ <div class="section-head"><h3>Personalize your learning</h3></div>
+ <div class="field"><label for="nameInput">Your name</label><input id="nameInput" placeholder="Enter your name" maxlength="40"></div>
+ <div class="field"><label for="languageSelect">Explanation language</label><select id="languageSelect"><option value="English">English</option><option value="Hindi">Hindi</option><option value="Bengali">Bengali</option></select></div>
+ <div class="field"><label for="goalSelect">Your main goal</label><select id="goalSelect"><option>Everyday conversation</option><option>School and study</option><option>Work and career</option><option>Job interviews</option><option>Travel and confidence</option></select></div>
+ <div class="field"><label for="levelSelect">Current learning level</label><select id="levelSelect"><option value="pre_a1">Starter</option><option value="a1">Beginner</option><option value="a2">Elementary Plus</option><option value="b1">Intermediate</option><option value="b2">Upper Intermediate</option></select></div>
+ <button class="btn full" onclick="saveProfile()">Save my preferences</button>
+ <button class="btn secondary full" onclick="resetProgress()">Reset learning progress</button>
+ <p class="hint">Your profile and lesson progress are stored locally in this browser. Avoid using private or sensitive information in practice messages.</p>
+</section>
+</div>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+ <button class="nav-item active" data-screen="home" onclick="go('home')"><span class="nav-ico">⌂</span>Home</button>
+ <button class="nav-item" data-screen="learn" onclick="go('learn')"><span class="nav-ico">▤</span>Learn</button>
+ <button class="nav-item center" data-screen="tutor" onclick="go('tutor')"><span class="nav-ico">🎙</span>Tutor</button>
+ <button class="nav-item" data-screen="progress" onclick="go('progress')"><span class="nav-ico">◔</span>Progress</button>
+ <button class="nav-item" data-screen="profile" onclick="go('profile')"><span class="nav-ico">♙</span>Profile</button>
+</nav>
+<div id="toast" class="toast" role="status"></div>
+
+<div class="onboarding" id="onboarding">
+ <div class="onboard-card"><div class="onboard-logo">✨</div><div class="eyebrow" style="text-align:center">WELCOME TO SPEAKORA AI</div><h2>Let's build your confidence</h2><p>A friendly English-learning journey made around your goals.</p>
+  <div class="field"><label for="onboardName">What should we call you?</label><input id="onboardName" placeholder="Your name" maxlength="40"></div>
+  <div class="field"><label for="onboardLang">Which language should explain difficult points?</label><select id="onboardLang"><option value="Hindi">Hindi</option><option value="Bengali">Bengali</option><option value="English">English</option></select></div>
+  <div class="field"><label for="onboardLevel">Your current English level</label><select id="onboardLevel"><option value="pre_a1">I'm just starting</option><option value="a1">I know some basic English</option><option value="a2">I can manage simple conversations</option><option value="b1">I can talk about familiar topics</option><option value="b2">I want more fluent, advanced English</option></select></div>
+  <button class="btn full" onclick="finishOnboarding()">Start my journey →</button>
+ </div>
+</div>
+
+<script>
+const API_BASE = "https://speakora-ai-ki0i.onrender.com";
+const LEVELS = [
+ {id:"pre_a1",name:"Starter",desc:"Build confidence with familiar words and short phrases.",icon:"🌱"},
+ {id:"a1",name:"Beginner",desc:"Handle simple everyday conversations.",icon:"💬"},
+ {id:"a2",name:"Elementary Plus",desc:"Describe experiences and manage routine tasks.",icon:"🧭"},
+ {id:"b1",name:"Intermediate",desc:"Explain opinions and connect your ideas.",icon:"🚀"},
+ {id:"b2",name:"Upper Intermediate",desc:"Communicate with more detail and natural fluency.",icon:"🏆"}
+];
+const DEFAULT_MODULES = {
+ pre_a1:["Greetings and introductions","Alphabet, numbers and spelling","People and family","Everyday objects and colours","Simple needs and polite requests"],
+ a1:["Daily routine and present simple","Food and ordering","Shopping and money","Places and directions","Past simple basics","Plans and invitations","Health and asking for help","Mixed conversation challenge"],
+ a2:["Tell a short story","Work and school","Travel and transport","Making plans","Opinions and preferences","Describing people and places","Emails and messages","Problem-solving role-play"],
+ b1:["Fluent everyday conversation","Experiences and achievements","Workplace communication","Interview practice","Problems and solutions","News and everyday topics","Clear paragraphs","Longer role-play"],
+ b2:["Nuanced opinions and debate","Professional presentations","Advanced interview answers","Natural expressions and collocations","Listening for detail and inference","Formal and informal writing","Negotiation and persuasion","Integrated final challenge"]
+};
+const state = JSON.parse(localStorage.getItem("speakora_state") || "null") || {
+ name:"",language:"Hindi",goal:"Everyday conversation",level:"pre_a1",completed:[],words:0,streak:0,lastPractice:"",chatStarted:false
+};
+let curriculum = null, activeLevel = state.level || "pre_a1";
+function persist(){localStorage.setItem("speakora_state",JSON.stringify(state));}
+function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display="none",2400);}
+function go(id){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===id));document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.screen===id));if(id==="learn")renderLessons();if(id==="home")renderHome();if(id==="progress")renderProgress();if(id==="profile")loadProfile();window.scrollTo({top:0,behavior:"smooth"});}
+function levelName(id){return LEVELS.find(x=>x.id===id)?.name||"Starter";}
+function getModules(id){if(curriculum&&curriculum.levels){const found=curriculum.levels.find(l=>l.id===id);if(found&&found.modules)return found.modules.map(m=>typeof m==="string"?m:m.title);}return DEFAULT_MODULES[id]||DEFAULT_MODULES.pre_a1;}
+function renderHome(){
+ const name=state.name?`, ${state.name}`:"";
+ document.getElementById("greeting").innerHTML=`Small steps${name}.<br><span class="gradient-text">Confident English.</span>`;
+ document.getElementById("streakStat").textContent=(state.streak||0)+" 🔥";
+ document.getElementById("lessonStat").textContent=state.completed.length;
+ document.getElementById("wordStat").textContent=state.words||0;
+ const modules=getModules(state.level);const list=document.getElementById("continueList");list.innerHTML="";
+ const next=modules.findIndex((_,i)=>!state.completed.includes(state.level+":"+i));const idx=next<0?0:next;
+ const item=document.createElement("div");item.className="lesson";item.innerHTML=`<div class="lesson-icon">${LEVELS.find(l=>l.id===state.level)?.icon||"🌱"}</div><div class="lesson-info"><strong>${escapeHtml(modules[idx]||"Review your English")}</strong><small>${levelName(state.level)} · ${state.completed.includes(state.level+":"+idx)?"Review completed lesson":"Short guided lesson"}</small></div><span class="arrow">›</span>`;item.onclick=()=>{go("learn");startLesson(idx)};list.appendChild(item);
+}
+function renderLessons(){
+ const pills=document.getElementById("levelPills");pills.innerHTML="";
+ LEVELS.forEach(l=>{const b=document.createElement("button");b.className="level-pill"+(activeLevel===l.id?" active":"");b.textContent=l.icon+" "+l.name;b.onclick=()=>{activeLevel=l.id;renderLessons()};pills.appendChild(b)});
+ const level=LEVELS.find(l=>l.id===activeLevel);const mods=getModules(activeLevel);const done=mods.filter((_,i)=>state.completed.includes(activeLevel+":"+i)).length;const pct=Math.round(done/Math.max(mods.length,1)*100);
+ document.getElementById("levelPercent").textContent=pct+"%";document.getElementById("levelTitle").textContent=level.name;document.getElementById("levelDesc").textContent=level.desc;document.getElementById("levelBar").style.width=pct+"%";document.getElementById("moduleHeading").textContent=level.name+" lessons";
+ const list=document.getElementById("lessonList");list.innerHTML="";
+ mods.forEach((title,i)=>{const done=state.completed.includes(activeLevel+":"+i);const el=document.createElement("div");el.className="lesson";el.innerHTML=`<div class="lesson-icon">${done?"✓":(i+1).toString().padStart(2,"0")}</div><div class="lesson-info"><strong>${escapeHtml(title)}</strong><small>${done?"Completed · Tap to revise":"Lesson "+(i+1)+" · 5–10 min"}</small></div><span class="arrow">›</span>`;el.onclick=()=>startLesson(i);list.appendChild(el)});
+}
+function startLesson(i){
+ const mods=getModules(activeLevel);const title=mods[i];const key=activeLevel+":"+i;
+ const examples = {
+  "Greetings and introductions":"Useful phrases: “Hi, my name is…”, “I am from…”, “What is your name?”, “Nice to meet you.” Try writing two sentences about yourself.",
+  "Daily routine and present simple":"Use the present simple for routines: “I wake up at seven.” With he/she, often add -s: “She works.” Try describing your morning.",
+  "Food and ordering":"Polite phrase: “I would like a cup of tea, please.” Try ordering a meal in two sentences.",
+  "Shopping and money":"Useful questions: “How much is this?” and “Do you have this in a different size?” Try a short shop conversation."
+ };
+ const text=examples[title]||`Today's goal: practise ${title.toLowerCase()}. First read a simple example, then create your own sentence. You can ask the AI Tutor to explain any difficult point in ${state.language}.`;
+ const modal=document.createElement("div");modal.className="onboarding show";modal.innerHTML=`<div class="onboard-card"><div class="eyebrow">LESSON ${i+1} · ${escapeHtml(levelName(activeLevel).toUpperCase())}</div><h2 style="text-align:left;margin-top:9px">${escapeHtml(title)}</h2><p style="text-align:left">${escapeHtml(text)}</p><div class="field"><label>Try it: write your own English sentence</label><input id="lessonAnswer" placeholder="Type your sentence…"></div><button class="btn full" id="lessonAsk">Practise with AI Tutor</button><button class="btn secondary full" id="lessonComplete">Mark lesson complete</button><button class="textbtn" style="display:block;margin:15px auto 0" id="lessonClose">Close</button></div>`;
+ document.body.appendChild(modal);
+ modal.querySelector("#lessonAsk").onclick=()=>{const ans=modal.querySelector("#lessonAnswer").value.trim();go("tutor");document.getElementById("chatInput").value=ans?`Help me practise “${ans}” for the lesson ${title}. Correct me gently and explain in ${state.language}.`:`Teach me ${title} at ${levelName(activeLevel)} level. Explain in ${state.language} and ask me one practice question.`;modal.remove();document.getElementById("chatForm").requestSubmit()};
+ modal.querySelector("#lessonComplete").onclick=()=>{if(!state.completed.includes(key))state.completed.push(key);state.words=Math.max(state.words||0,state.completed.length*5);const today=new Date().toISOString().slice(0,10);if(state.lastPractice!==today){const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);state.streak=state.lastPractice===yesterday?(state.streak||0)+1:1;state.lastPractice=today;}persist();modal.remove();renderHome();renderLessons();toast("Lesson completed — well done! ✨")};
+ modal.querySelector("#lessonClose").onclick=()=>modal.remove();
+}
+function renderProgress(){const total=Object.values(DEFAULT_MODULES).reduce((a,b)=>a+b.length,0);const pct=Math.min(100,Math.round(state.completed.length/total*100));document.getElementById("overallPercent").textContent=pct+"%";document.getElementById("overallBar").style.width=pct+"%";document.getElementById("progressMessage").textContent=state.completed.length?`You've completed ${state.completed.length} lesson${state.completed.length===1?"":"s"}. Keep going!`:"Start your first lesson to build your progress.";document.getElementById("progressLessons").textContent=state.completed.length;document.getElementById("progressWords").textContent=state.words||0;document.getElementById("progressStreak").textContent=state.streak||0;}
+function loadProfile(){document.getElementById("profileName").textContent=state.name||"English Learner";document.getElementById("profileLevel").textContent=levelName(state.level)+" · "+state.goal;document.getElementById("nameInput").value=state.name||"";document.getElementById("languageSelect").value=state.language||"Hindi";document.getElementById("goalSelect").value=state.goal||"Everyday conversation";document.getElementById("levelSelect").value=state.level||"pre_a1";}
+function saveProfile(){state.name=document.getElementById("nameInput").value.trim();state.language=document.getElementById("languageSelect").value;state.goal=document.getElementById("goalSelect").value;state.level=document.getElementById("levelSelect").value;activeLevel=state.level;persist();loadProfile();renderHome();toast("Preferences saved!");}
+function finishOnboarding(){state.name=document.getElementById("onboardName").value.trim();state.language=document.getElementById("onboardLang").value;state.level=document.getElementById("onboardLevel").value;activeLevel=state.level;state.onboarded=true;persist();document.getElementById("onboarding").classList.remove("show");renderHome();toast("Welcome to Speakora AI ✨");}
+function escapeHtml(str){return String(str).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function addMessage(text,who){const box=document.getElementById("messages");const el=document.createElement("div");el.className="msg "+who;el.textContent=text;box.appendChild(el);box.scrollTop=box.scrollHeight;return el;}
+async function sendChat(message){
+ if(!message.trim())return;addMessage(message,"user");document.getElementById("chatInput").value="";const loading=addMessage("Thinking of a helpful response…","ai");
+ const userContext=`Learner level: ${levelName(state.level)}. Preferred explanation language: ${state.language}. Goal: ${state.goal}. You are Speakora AI, a kind English coach. Ask one question at a time. Correct gently, giving a natural version and a short explanation.`;
+ try{
+  const res=await fetch(API_BASE+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:message,language:state.language,level:state.level,goal:state.goal,context:userContext})});
+  const data=await res.json();loading.remove();
+  if(!res.ok||!data.reply)throw new Error(data.error||"AI response was not returned.");
+  addMessage(data.reply,"ai");
+ }catch(e){loading.remove();addMessage("I couldn't connect to the AI service just now. Your message is still here. Please try again later. (Connection details: "+(e.message||"network unavailable")+")","ai");}
+}
+function quickPrompt(prompt){go("tutor");sendChat(prompt);}
+function clearChat(){document.getElementById("messages").innerHTML='<div class="msg ai">Fresh start! 😊 What would you like to practise today?</div>';state.chatStarted=false;persist();}
+document.getElementById("chatForm").addEventListener("submit",e=>{e.preventDefault();sendChat(document.getElementById("chatInput").value.trim())});
+document.getElementById("settingsBtn").onclick=()=>go("profile");
+document.getElementById("langBtn").onclick=()=>{go("profile");toast("Change your explanation language in Profile.");};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){const ob=document.querySelector(".onboarding.show");if(ob&&state.onboarded)ob.classList.remove("show")}});
+function resetProgress(){if(!confirm("Reset completed lessons, words and streak on this device?"))return;state.completed=[];state.words=0;state.streak=0;state.lastPractice="";persist();renderHome();renderProgress();toast("Learning progress reset.");}
+async function loadCurriculum(){
+ try{const r=await fetch("./Speakora_AI_Learning_Curriculum.json",{cache:"no-store"});if(r.ok){curriculum=await r.json();renderHome();renderLessons();}}catch(e){/* Built-in curriculum is used if the JSON file isn't available. */}
+}
+if(!state.onboarded){document.getElementById("onboarding").classList.add("show");}
+renderHome();renderLessons();renderProgress();loadProfile();loadCurriculum();
+</script>
+</body>
+</html>
