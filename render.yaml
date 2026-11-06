@@ -11,3 +11,5 @@ services:
     sync: false
   - key: OPENAI_MODEL
     value: gpt-4.1-mini
+  - key: ALLOWED_ORIGINS
+    sync: false

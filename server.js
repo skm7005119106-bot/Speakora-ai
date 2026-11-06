@@ -4,8 +4,95 @@ const OpenAI = require("openai");
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+// Render runs behind a proxy; this makes req.ip the real visitor IP.
+app.set("trust proxy", 1);
+
+// --- CORS: only our own website may call the API from a browser ---
+// Add more origins with the ALLOWED_ORIGINS env var (comma-separated),
+// e.g. ALLOWED_ORIGINS=https://speakora.in,https://www.speakora.in
+const allowedOrigins = new Set(
+  [
+    "https://skm7005119106-bot.github.io",
+    "http://localhost:3000",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    ...(process.env.ALLOWED_ORIGINS || "").split(",")
+  ]
+    .map((o) => o.trim())
+    .filter(Boolean)
+);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Requests without an Origin header (health checks, curl) are not
+      // browser requests; the rate limits below still apply to them.
+      if (!origin || allowedOrigins.has(origin)) return callback(null, true);
+      return callback(null, false);
+    }
+  })
+);
+app.use(express.json({ limit: "50kb" }));
+
+// --- Rate limits: protect the OpenAI bill from abuse ---
+const PER_MINUTE = Number(process.env.RATE_LIMIT_PER_MINUTE) || 10;
+const PER_DAY = Number(process.env.RATE_LIMIT_PER_DAY) || 150;
+const GLOBAL_PER_DAY = Number(process.env.GLOBAL_DAILY_LIMIT) || 2000;
+
+const visitors = new Map(); // ip -> { minuteStart, minuteCount, dayStart, dayCount }
+let globalDay = { start: Date.now(), count: 0 };
+
+function chatRateLimit(req, res, next) {
+  const now = Date.now();
+  const MINUTE = 60 * 1000;
+  const DAY = 24 * 60 * 60 * 1000;
+
+  if (now - globalDay.start >= DAY) globalDay = { start: now, count: 0 };
+  if (globalDay.count >= GLOBAL_PER_DAY) {
+    return res.status(429).json({
+      error: "Speakora AI has reached today's limit. Please try again tomorrow."
+    });
+  }
+
+  const ip = req.ip || "unknown";
+  let v = visitors.get(ip);
+  if (!v) {
+    v = { minuteStart: now, minuteCount: 0, dayStart: now, dayCount: 0 };
+    visitors.set(ip, v);
+  }
+  if (now - v.minuteStart >= MINUTE) {
+    v.minuteStart = now;
+    v.minuteCount = 0;
+  }
+  if (now - v.dayStart >= DAY) {
+    v.dayStart = now;
+    v.dayCount = 0;
+  }
+
+  if (v.minuteCount >= PER_MINUTE) {
+    return res.status(429).json({
+      error: "You're sending messages too fast. Please wait a minute."
+    });
+  }
+  if (v.dayCount >= PER_DAY) {
+    return res.status(429).json({
+      error: "You've reached today's practice limit. Please come back tomorrow."
+    });
+  }
+
+  v.minuteCount++;
+  v.dayCount++;
+  globalDay.count++;
+  next();
+}
+
+// Forget idle visitors so memory doesn't grow forever.
+setInterval(() => {
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+  for (const [ip, v] of visitors) {
+    if (v.dayStart < cutoff) visitors.delete(ip);
+  }
+}, 60 * 60 * 1000).unref();
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,14 +104,15 @@ app.get("/", (req, res) => {
   res.send("Speakora AI Backend is running!");
 });
 
-app.get("/health", (req, res) => {
+// The app calls /api/health; /health is kept for Render's health check.
+app.get(["/health", "/api/health"], (req, res) => {
   res.json({
     status: "ok",
     app: "Speakora AI"
   });
 });
 
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chat", chatRateLimit, async (req, res) => {
   try {
     const { message, language, level, goal } = req.body;
 
